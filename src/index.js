@@ -15,13 +15,32 @@ let months = [
   "Dec",
 ];
 let month = months[now.getMonth()];
-let days = ["Sun", "Mon", "Tue", "Wed", "Thurs", "Fri", "Sat"];
+let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 let day = days[now.getDay()];
 let hour = now.getHours();
 let minute = now.getMinutes();
 
 let h2 = document.querySelector("h2");
-h2.innerHTML = `${date} / ${month} <br /> ${day} ${hour}:${minute}`;
+h2.innerHTML = `${date} (${day}) / ${month}`;
+let h3 =document.querySelector("h3");
+h3.innerHTML = ` ${hour}:${minute}`;
+
+let h4=document.querySelector("h4")
+if (5< hour< 12){
+  
+  h4.innerHTML= "🌞Good Morning🌞! Have a lovely and wonderful day ahead! Dun Skip the Breakfast nor👊!!!"
+}
+if (12<= hour <16) {
+  h4.innerHTML =
+    "☀Good Afternoon☀! Lunch Kg Kg srr pr!";
+}
+
+if (16<= hour <20) {
+  h4.innerHTML = "🌆Good Evening🌆! Dinner Kg Kg srr nor..Dun Skip the Dinner nor👊!!!";
+}
+if ( hour>=20 || hour<=5) {
+  h4.innerHTML = "😴Good night sweet dreams😴! Sw sw x nor ayan nout kya tk ahti m nay nk👊!!!";
+}
 
 function searchCity(event) {
   event.preventDefault();
@@ -58,6 +77,31 @@ function searchCity(event) {
 
     let humidity = document.querySelector("span.humidity");
     humidity.innerHTML = temperature.data.main.humidity;
+    let timezoneOffset = temperature.data.timezone;
+    let now = new Date();
+    let localTime =
+      now.getTime() + now.getTimezoneOffset() * 60000 + timezoneOffset * 1000;
+    let localDate = new Date(localTime);
+    let options = { hour12: false };
+let current = localDate.getHours();
+let time = document.querySelector("h3");
+time.innerHTML = localDate.toLocaleTimeString([], options);
+if (current >= 5 && current < 12) {
+  h4.innerHTML =
+    "🌞Good Morning🌞! Have a lovely and wonderful day ahead! Dun Skip the Breakfast nor👊!!!";
+}
+if (current >= 12 && current < 16) {
+  h4.innerHTML = "☀Good Afternoon☀! Lunch Kg Kg srr pr!";
+}
+
+if (current >= 16 && current < 20) {
+  h4.innerHTML =
+    "🌆Good Evening🌆! Dinner Kg Kg srr nor..Dun Skip the Dinner nor👊!!!";
+}
+if (current >= 20 || current < 5) {
+  h4.innerHTML =
+    "😴Good night sweet dreams😴! Sw sw x nor ayan nout kya tk ahti m nay nk👊!!!";
+}
   }
 }
 

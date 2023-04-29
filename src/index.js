@@ -1,3 +1,90 @@
+function notLoadPosition(notLoad) {
+  let lat = notLoad.coords.latitude;
+  let lon = notLoad.coords.longitude;
+  let apiKey = "35b0e07e80de2469db49b28cc9fee2cd";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(currentTemperature);
+}
+
+function currentTemperature(temperature) {
+  let now = new Date();
+  let date = now.getDate();
+  let months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "June",
+    "July",
+    "August",
+    "Sept",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  let month = months[now.getMonth()];
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday",
+  ];
+  let day = days[now.getDay()];
+  let hour = now.getHours();
+  let minute = now.getMinutes();
+
+  let h2 = document.querySelector("h2");
+  h2.innerHTML = `${date} (${day}) / ${month}`;
+  let h3 = document.querySelector("h3");
+  h3.innerHTML = ` ${hour}:${minute}`;
+
+  let h4 = document.querySelector("h4");
+  if (hour >= 5 && hour < 12) {
+    h4.innerHTML =
+      "🌞Good Morning🌞! Have a lovely and wonderful day ahead! Dun Skip the Breakfast nor👊!!!";
+  }
+  if (hour >= 12 && hour < 16) {
+    h4.innerHTML = "☀Good Afternoon☀! Lunch Kg Kg srr pr!";
+  }
+
+  if (hour >= 16 && hour < 20) {
+    h4.innerHTML =
+      "🌆Good Evening🌆! Dinner Kg Kg srr nor..Dun Skip the Dinner nor👊!!!";
+  }
+  if (hour >= 20 || hour < 5) {
+    h4.innerHTML =
+      "😴Good night sweet dreams😴! Sw sw x nor ayan nout kya tk ahti m nay nk👊!!!";
+  }
+  let number = document.querySelector("span.number");
+  let currentTemp = Math.round(temperature.data.main.temp);
+  number.innerHTML = currentTemp;
+  console.log(temperature);
+  let condition = document.querySelector("span.condition");
+  condition.innerHTML = temperature.data.weather[0].description;
+
+  let precipitation = document.querySelector("span.precipitation");
+  precipitation.innerHTML = temperature.data.rain
+    ? temperature.data.rain["1h"]
+    : temperature.data.snow
+    ? temperature.data.snow["1h"]
+    : 0;
+
+  let wind = document.querySelector("span.wind");
+  wind.innerHTML = Math.round(temperature.data.wind.speed * 3.6);
+
+  let humidity = document.querySelector("span.humidity");
+  humidity.innerHTML = temperature.data.main.humidity;
+  let h1 = document.querySelector("h1");
+  h1.innerHTML = temperature.data.name;
+}
+  navigator.geolocation.getCurrentPosition(notLoadPosition);
+
+
+  //current button 
 function position(response) {
   let lat = response.coords.latitude;
   let lon = response.coords.longitude;
@@ -134,7 +221,7 @@ function searchCity(event) {
     let current = localDate.getHours();
     let time = document.querySelector("h3");
     time.innerHTML = localDate.toLocaleTimeString([], options);
-    let h4=document.querySelector("h4");
+    let h4 = document.querySelector("h4");
     if (current >= 5 && current < 12) {
       h4.innerHTML =
         "🌞Good Morning🌞! Have a lovely and wonderful day ahead! Dun Skip the Breakfast nor👊!!!";

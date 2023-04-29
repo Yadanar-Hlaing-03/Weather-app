@@ -117,3 +117,13 @@ ul {
   .link:hover{
     color: purple;
   }
+  .for {
+    font-size: small;
+    color: purple;
+  }
+  .open{
+    text-decoration: none;
+  }
+  .open:hover{
+color: red;
+  }

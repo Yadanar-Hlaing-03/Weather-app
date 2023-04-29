@@ -18,128 +18,135 @@
   <body>
     <div class="container">
       <div class="weather-app">
-
         <form class="search-form">
           <div class="row">
             <div class="col-8">
-          <input 
-          type="search" 
-          placeholder="Type a city.." 
-          autofocus="on" 
-          autocomplete="off"
-          class="form-control shadow-sm border-0"
-          id="city-search" />
-          </div>
+              <input
+                type="search"
+                placeholder="Type a city.."
+                autocomplete="off"
+                autofocus="on"
+                class="form-control shadow-sm border-0"
+                id="city-search"
+              />
+            </div>
 
-          <div class="col-2">
-          <input
-          type="submit" value="Search" 
-          class="form-control btn btn-secondary shadow-sm" 
-          />
-          </div>
-                    <div class="col-2">
-          <input
-          type="submit" value="Current" 
-          class="form-control btn btn-success shadow-sm" id="current"
-          />
-
-          </div>
+            <div class="col-2">
+              <input
+                type="submit"
+                value="Search"
+                class="form-control btn btn-secondary shadow-sm"
+              />
+            </div>
+            <div class="col-2">
+              <input
+                type="submit"
+                value="Current"
+                class="form-control btn btn-success shadow-sm"
+                id="current"
+              />
+            </div>
           </div>
         </form>
         <h1>Yangon</h1>
-        <h2>
-          02(Sunday)/04
-        </h2>
+        <h2>02(Sunday)/04</h2>
         <h3>20:30</h3>
         <h4>Good Day</h4>
         <div class="row">
           <div class="col-4">
             <ul class="info">
               <li>Precipitation: <span class="precipitation"></span>%,</li>
-              <li >Wind: <span class="wind"></span>km/h,</li>
+              <li>Wind: <span class="wind"></span>km/h,</li>
               <li>Humidity: <span class="humidity"></span>%</li>
             </ul>
 
             <div class="btn-group" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-light">Temperature</button>
-  <button type="button" class="btn btn-light">Precipitation</button>
-  <button type="button" class="btn btn-light">Wind</button>
-</div>
+              <button type="button" class="btn btn-light">Temperature</button>
+              <button type="button" class="btn btn-light">Precipitation</button>
+              <button type="button" class="btn btn-light">Wind</button>
+            </div>
           </div>
           <div class="col-4">
             <span class="number"> 31</span>
             <span class="degree">
-            <a href="#" class="celsius">°C/</a>
-            <a href="#" class="°F"> °F </a> </span>
+              <a href="#" class="celsius">°C/</a>
+              <a href="#" class="°F"> °F </a>
+            </span>
           </div>
           <div class="col-4">
             <img src="images/cloud.png" alt="cloud" />
             <br />
             <span class="condition"> Clear with periodic clouds</span>
-          
-        </div>
-        <div class="card">
-          <div class="card-body">
-            <div class="row">
-              <div class="col-2">
-                Mon
-                <br />
-                03/04
-                <br />
-                <img src="images/cloudy.png" alt="cloud" width="50" />
-                <br />
-                37°C
-              </div>
-              <div class="col-2">
-                Tue
-                <br />
-                04/04
-                <br />
-                <img src="images/cloudy.png" alt="cloud" width="50" />
-                <br />
-                38°C
-              </div>
-              <div class="col-2">
-                Wed
-                <br />
-                05/04
-                <br />
-                <img src="images/sun.png" alt="cloud" width="50" />
-                <br />
-                37°C
-              </div>
-              <div class="col-2">
-                Thurs
-                <br />
-                06/04
-                <br />
-                <img src="images/cloudy.png" alt="cloud" width="50" />
-                <br />
-                37°C
-              </div>
-              <div class="col-2">
-                Fri
-                <br />
-                07/04
-                <br />
-                <img src="images/cloud.png" alt="cloud" width="50" />
-                <br />
-                37°C
-              </div>
-              <div class="col-2">
-                Sat
-                <br />
-                03/04
-                <br />
-                <img src="images/cloud.png" alt="cloud" width="50" />
-                <br />
-                37°C
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="row">
+                <div class="col-2">
+                  Mon
+                  <br />
+                  03/04
+                  <br />
+                  <img src="images/cloudy.png" alt="cloud" width="50" />
+                  <br />
+                  37°C
+                </div>
+                <div class="col-2">
+                  Tue
+                  <br />
+                  04/04
+                  <br />
+                  <img src="images/cloudy.png" alt="cloud" width="50" />
+                  <br />
+                  38°C
+                </div>
+                <div class="col-2">
+                  Wed
+                  <br />
+                  05/04
+                  <br />
+                  <img src="images/sun.png" alt="cloud" width="50" />
+                  <br />
+                  37°C
+                </div>
+                <div class="col-2">
+                  Thurs
+                  <br />
+                  06/04
+                  <br />
+                  <img src="images/cloudy.png" alt="cloud" width="50" />
+                  <br />
+                  37°C
+                </div>
+                <div class="col-2">
+                  Fri
+                  <br />
+                  07/04
+                  <br />
+                  <img src="images/cloud.png" alt="cloud" width="50" />
+                  <br />
+                  37°C
+                </div>
+                <div class="col-2">
+                  Sat
+                  <br />
+                  03/04
+                  <br />
+                  <img src="images/cloud.png" alt="cloud" width="50" />
+                  <br />
+                  37°C
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <p class="code">
+        <a href="https://github.com/Yadanar-Hlaing-03/Weather-app" class="link"
+          >Open-source code</a
+        >
+        by Olivia
+      </p>
     </div>
-    <script src="src/index.js" ></script>
+    <script src="src/index.js"></script>
   </body>
 </html>

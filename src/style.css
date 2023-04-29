@@ -1,6 +1,6 @@
 h1 {
   text-align: center;
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: cursive;
   color: #b93eb9;
   line-height: 50px;
 }
@@ -106,3 +106,14 @@ ul {
   background-color: black;
   border-color: black;
 }
+.code{
+  text-align: center;
+  font-family: monospace;
+  text-decoration: none;
+  }
+  .link {
+    text-decoration: none;
+  }
+  .link:hover{
+    color: purple;
+  }

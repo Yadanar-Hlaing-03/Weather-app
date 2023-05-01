@@ -113,6 +113,7 @@ ul {
   }
   .link {
     text-decoration: none;
+    text-align: center;
   }
   .link:hover{
     color: purple;
@@ -120,10 +121,18 @@ ul {
   .for {
     font-size: small;
     color: purple;
+    text-align: center;
   }
   .open{
     text-decoration: none;
+    text-align: center;
+    display: block;
+    margin: 0;
   }
   .open:hover{
 color: red;
   }
+  #weather-icon {
+  width: 100px;
+  height: 100px;
+}

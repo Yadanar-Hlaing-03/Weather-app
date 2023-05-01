@@ -160,7 +160,7 @@ function currentTemperature(temperature) {
   let h3 = document.querySelector("h3");
   //h3.innerHTML = ` ${hour}:${minute}`;
   let options = {
-    hour: "numeric",
+    hour: "2-digit",
     minute: "2-digit",
     hour12: false,
   };
@@ -347,7 +347,7 @@ function searchCity(event) {
     let h3 = document.querySelector("h3");
     //h3.innerHTML = ` ${hour}:${minute}`;
     let options = {
-      hour: "numeric",
+      hour: "2-digit",
       minute: "2-digit",
       hour12: false,
     };

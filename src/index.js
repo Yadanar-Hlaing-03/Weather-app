@@ -63,9 +63,34 @@ function currentTemperature(temperature) {
   let currentTemp = Math.round(temperature.data.main.temp);
   number.innerHTML = currentTemp;
   console.log(temperature);
-  let condition = document.querySelector("span.condition");
-  condition.innerHTML = temperature.data.weather[0].description;
+  let situation = document.querySelector("span.condition");
+  situation.innerHTML = temperature.data.weather[0].description;
+  let condition = temperature.data.weather[0].main;
+  // Get the icon element
+  let icon = document.getElementById("weather-icon");
 
+  // Set the icon source based on the weather condition
+  switch (condition) {
+    case "Clear":
+      icon.src = "images/clear.svg";
+      break;
+    case "Clouds":
+      icon.src = "images/clouds.svg";
+      break;
+    case "Rain":
+    case "Drizzle":
+      icon.src = "images/rain.svg";
+      break;
+    case "Thunderstorm":
+      icon.src = "images/thunderstorm.svg";
+      break;
+    case "Snow":
+      icon.src = "images/snow.svg";
+      break;
+    default:
+      icon.src = "images/unknown.svg";
+      break;
+  }
   let precipitation = document.querySelector("span.precipitation");
   precipitation.innerHTML = temperature.data.rain
     ? temperature.data.rain["1h"]
@@ -81,10 +106,9 @@ function currentTemperature(temperature) {
   let h1 = document.querySelector("h1");
   h1.innerHTML = temperature.data.name;
 }
-  navigator.geolocation.getCurrentPosition(notLoadPosition);
+navigator.geolocation.getCurrentPosition(notLoadPosition);
 
-
-  //current button 
+//current button
 function position(response) {
   let lat = response.coords.latitude;
   let lon = response.coords.longitude;
@@ -150,9 +174,34 @@ function currentTemperature(temperature) {
   let currentTemp = Math.round(temperature.data.main.temp);
   number.innerHTML = currentTemp;
   console.log(temperature);
-  let condition = document.querySelector("span.condition");
-  condition.innerHTML = temperature.data.weather[0].description;
+  let situation = document.querySelector("span.condition");
+  situation.innerHTML = temperature.data.weather[0].description;
+  let condition = temperature.data.weather[0].main;
+  // Get the icon element
+  let icon = document.getElementById("weather-icon");
 
+  // Set the icon source based on the weather condition
+  switch (condition) {
+    case "Clear":
+      icon.src = "images/clear.svg";
+      break;
+    case "Clouds":
+      icon.src = "images/clouds.svg";
+      break;
+    case "Rain":
+    case "Drizzle":
+      icon.src = "images/rain.svg";
+      break;
+    case "Thunderstorm":
+      icon.src = "images/thunderstorm.svg";
+      break;
+    case "Snow":
+      icon.src = "images/snow.svg";
+      break;
+    default:
+      icon.src = "images/unknown.svg";
+      break;
+  }
   let precipitation = document.querySelector("span.precipitation");
   precipitation.innerHTML = temperature.data.rain
     ? temperature.data.rain["1h"]
@@ -196,8 +245,38 @@ function searchCity(event) {
     let currentTemp = Math.round(temperature.data.main.temp);
     number.innerHTML = currentTemp;
     console.log(temperature);
-    let condition = document.querySelector("span.condition");
-    condition.innerHTML = temperature.data.weather[0].description;
+    let situation = document.querySelector("span.condition");
+    let description = temperature.data.weather[0].description;
+    situation.innerHTML = description;
+
+    //weather-icon
+    // Get the weather condition from the API response
+    let condition = temperature.data.weather[0].main;
+    // Get the icon element
+    let icon = document.getElementById("weather-icon");
+
+    // Set the icon source based on the weather condition
+    switch (condition) {
+      case "Clear":
+        icon.src = "images/clear.svg";
+        break;
+      case "Clouds":
+        icon.src = "images/clouds.svg";
+        break;
+      case "Rain":
+      case "Drizzle":
+        icon.src = "images/rain.svg";
+        break;
+      case "Thunderstorm":
+        icon.src = "images/thunderstorm.svg";
+        break;
+      case "Snow":
+        icon.src = "images/snow.svg";
+        break;
+      default:
+        icon.src = "images/unknown.svg";
+        break;
+    }
 
     let precipitation = document.querySelector("span.precipitation");
     precipitation.innerHTML = temperature.data.rain
@@ -217,10 +296,48 @@ function searchCity(event) {
     let localTime =
       now.getTime() + now.getTimezoneOffset() * 60000 + timezoneOffset * 1000;
     let localDate = new Date(localTime);
+
+    //date/time/hour/minutes
+    let date = localDate.getDate();
+    let months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "June",
+      "July",
+      "August",
+      "Sept",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    let month = months[localDate.getMonth()];
+    let days = [
+      "Sunday",
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ];
+    let day = days[localDate.getDay()];
+    let hour = localDate.getHours();
+    let minute = localDate.getMinutes();
+
+    let h2 = document.querySelector("h2");
+    h2.innerHTML = `${date} (${day}) / ${month}`;
+    //hour 12
     let options = { hour12: false };
+    let localHour = localDate.toLocaleTimeString([], options);
+    let h3 = document.querySelector("h3");
+    h3.innerHTML = ` ${localHour}:${minute}`;
+
+    //message display
     let current = localDate.getHours();
-    let time = document.querySelector("h3");
-    time.innerHTML = localDate.toLocaleTimeString([], options);
+
     let h4 = document.querySelector("h4");
     if (current >= 5 && current < 12) {
       h4.innerHTML =

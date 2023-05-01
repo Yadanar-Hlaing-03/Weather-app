@@ -10,18 +10,18 @@ function currentTemperature(temperature) {
   let now = new Date();
   let date = now.getDate();
   let months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
+    "January",
+    "February",
+    "March",
+    "April",
     "May",
     "June",
     "July",
     "August",
-    "Sept",
-    "Oct",
-    "Nov",
-    "Dec",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
   let month = months[now.getMonth()];
   let days = [
@@ -40,7 +40,14 @@ function currentTemperature(temperature) {
   let h2 = document.querySelector("h2");
   h2.innerHTML = `${date} (${day}) / ${month}`;
   let h3 = document.querySelector("h3");
-  h3.innerHTML = ` ${hour}:${minute}`;
+  //h3.innerHTML = ` ${hour}:${minute}`;
+  let options = {
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  };
+  let timeString = now.toLocaleTimeString([], options);
+  h3.innerHTML = timeString;
 
   let h4 = document.querySelector("h4");
   if (hour >= 5 && hour < 12) {
@@ -121,18 +128,18 @@ function currentTemperature(temperature) {
   let now = new Date();
   let date = now.getDate();
   let months = [
-    "Jan",
-    "Feb",
-    "Mar",
-    "Apr",
+    "January",
+    "February",
+    "March",
+    "April",
     "May",
     "June",
     "July",
     "August",
-    "Sept",
-    "Oct",
-    "Nov",
-    "Dec",
+    "September",
+    "October",
+    "November",
+    "December",
   ];
   let month = months[now.getMonth()];
   let days = [
@@ -146,12 +153,19 @@ function currentTemperature(temperature) {
   ];
   let day = days[now.getDay()];
   let hour = now.getHours();
-  let minute = now.getMinutes();
+  //let minute = now.getMinutes();
 
   let h2 = document.querySelector("h2");
   h2.innerHTML = `${date} (${day}) / ${month}`;
   let h3 = document.querySelector("h3");
-  h3.innerHTML = ` ${hour}:${minute}`;
+  //h3.innerHTML = ` ${hour}:${minute}`;
+  let options = {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: false,
+  };
+  let timeString = now.toLocaleTimeString([], options);
+  h3.innerHTML = timeString;
 
   let h4 = document.querySelector("h4");
   if (hour >= 5 && hour < 12) {
@@ -300,18 +314,18 @@ function searchCity(event) {
     //date/time/hour/minutes
     let date = localDate.getDate();
     let months = [
-      "Jan",
-      "Feb",
-      "Mar",
-      "Apr",
+      "January",
+      "February",
+      "March",
+      "April",
       "May",
       "June",
       "July",
       "August",
-      "Sept",
-      "Oct",
-      "Nov",
-      "Dec",
+      "September",
+      "October",
+      "November",
+      "December",
     ];
     let month = months[localDate.getMonth()];
     let days = [
@@ -324,16 +338,21 @@ function searchCity(event) {
       "Saturday",
     ];
     let day = days[localDate.getDay()];
-    let hour = localDate.getHours();
-    let minute = localDate.getMinutes();
+    //let hour = localDate.getHours();
+    //let minute = localDate.getMinutes();
 
     let h2 = document.querySelector("h2");
     h2.innerHTML = `${date} (${day}) / ${month}`;
     //hour 12
-    let options = { hour12: false };
-    let localHour = localDate.toLocaleTimeString([], options);
     let h3 = document.querySelector("h3");
-    h3.innerHTML = ` ${localHour}:${minute}`;
+    //h3.innerHTML = ` ${hour}:${minute}`;
+    let options = {
+      hour: "numeric",
+      minute: "2-digit",
+      hour12: false,
+    };
+    let timeString = localDate.toLocaleTimeString([], options);
+    h3.innerHTML = timeString;
 
     //message display
     let current = localDate.getHours();

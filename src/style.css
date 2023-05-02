@@ -9,7 +9,7 @@ h2 {
   text-align: center;
   font-size: 15px;
   opacity: 0.6;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: cursive;
   padding-bottom: 10px;
   margin-bottom: 0;
 }
@@ -18,7 +18,7 @@ h3 {
   text-align: center;
   font-size: 15px;
   opacity: 0.6;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: cursive;
   padding-bottom: 10px;
   margin-top: 0;
 }
@@ -27,7 +27,7 @@ h4 {
   text-align: center;
   font-size: 15px;
   opacity: 0.6;
-  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-family: cursive;
   padding-bottom: 10px;
 }
 
@@ -72,6 +72,10 @@ ul {
 .card {
   background: #f5edbe;
 }
+
+.col-2{
+display: block;
+margin: auto;}
 .col-4 {
   display: block;
   margin: 0;
@@ -106,33 +110,41 @@ ul {
   background-color: black;
   border-color: black;
 }
-.code{
+.code {
   text-align: center;
   font-family: monospace;
   text-decoration: none;
-  }
-  .link {
-    text-decoration: none;
-    text-align: center;
-  }
-  .link:hover{
-    color: purple;
-  }
-  .for {
-    font-size: small;
-    color: purple;
-    text-align: center;
-  }
-  .open{
-    text-decoration: none;
-    text-align: center;
-    display: block;
-    margin: 0;
-  }
-  .open:hover{
-color: red;
-  }
-  #weather-icon {
+}
+.link {
+  text-decoration: none;
+  text-align: center;
+}
+.link:hover {
+  color: purple;
+}
+.for {
+  font-size: small;
+  color: purple;
+  text-align: center;
+}
+.open {
+  text-decoration: none;
+  text-align: center;
+  display: block;
+  margin: 0;
+}
+.open:hover {
+  color: red;
+}
+#weather-icon {
   width: 100px;
   height: 100px;
+}
+#background-video {
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  min-width: 100%;
+  min-height: 100%;
+  z-index: -1;
 }

@@ -72,6 +72,7 @@ function currentTemperature(temperature) {
   console.log(temperature);
   let situation = document.querySelector("span.condition");
   situation.innerHTML = temperature.data.weather[0].description;
+  //weather icons
   let condition = temperature.data.weather[0].main;
   // Get the icon element
   let icon = document.getElementById("weather-icon");
@@ -98,6 +99,38 @@ function currentTemperature(temperature) {
       icon.src = "images/unknown.svg";
       break;
   }
+  //background videos
+  // Get the weather condition from the API response
+
+  // Set the video source based on the weather condition
+  let background = temperature.data.weather[0].main;
+  let bgVideo = document.getElementById("background-video");
+  let videoSource = document.getElementById("video-source");
+
+  switch (background) {
+    case "Clear":
+      videoSource.src = "videos/clear.mp4";
+      break;
+    case "Clouds":
+      videoSource.src = "videos/clouds.mp4";
+      break;
+    case "Rain":
+    case "Drizzle":
+      videoSource.src = "videos/rain.mp4";
+      break;
+    case "Thunderstorm":
+      videoSource.src = "videos/thunderstorm.mp4";
+      break;
+    case "Snow":
+      videoSource.src = "videos/snow.mp4";
+      break;
+    default:
+      videoSource.src = "videos/default.mp4";
+      break;
+  }
+
+  bgVideo.load(); // Reload the video element to load the new source
+  console.log();
   let precipitation = document.querySelector("span.precipitation");
   precipitation.innerHTML = temperature.data.rain
     ? temperature.data.rain["1h"]
@@ -112,7 +145,62 @@ function currentTemperature(temperature) {
   humidity.innerHTML = temperature.data.main.humidity;
   let h1 = document.querySelector("h1");
   h1.innerHTML = temperature.data.name;
+
+  //forecast 5 days
+  let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  axios.get(forecastUrl).then(forecastTemperature);
+  function forecastTemperature(forecast) {
+    // Get the forecast data for the next 5 days
+    let forecastData = forecast.data.list.slice(0, 5);
+
+    // Loop through the forecast data and update the HTML on the page
+    for (let i = 0; i < forecastData.length; i++) {
+      let forecastDayElement = document.getElementById(`forecast-day${i + 1}`);
+      let forecastTempElement = document.getElementById(
+        `forecast-temp${i + 1}`
+      );
+      let forecastIconElement = document.getElementById(
+        `forecast-icon${i + 1}`
+      );
+
+      // Get the forecast date, temperature, and weather condition
+      let forecastDate = new Date(forecastData[i].dt * 1000);
+      let forecastTemp = Math.round(forecastData[i].main.temp);
+      let forecastCondition = forecastData[i].weather[0].main;
+
+      // Update the HTML on the page with the forecast data
+      forecastDayElement.innerHTML = forecastDate.toLocaleDateString("en-US", {
+        weekday: "short",
+      });
+      forecastTempElement.innerHTML = `${forecastTemp}&deg;C`;
+      forecastIconElement.src = getIconUrl(forecastCondition);
+    }
+  }
+
+  function getIconUrl(condition) {
+    // Return the URL of the appropriate icon based on the weather condition
+    switch (condition) {
+      case "Clear":
+        return "images/clear.svg";
+      case "Clouds":
+        return "images/clouds.svg";
+      case "Rain":
+      case "Drizzle":
+        return "images/rain.svg";
+      case "Thunderstorm":
+        return "images/thunderstorm.svg";
+      case "Snow":
+        return "images/snow.svg";
+      default:
+        return "images/unknown.svg";
+    }
+  }
+
 }
+
+
+   
+
 navigator.geolocation.getCurrentPosition(notLoadPosition);
 
 //current button
@@ -216,6 +304,34 @@ function currentTemperature(temperature) {
       icon.src = "images/unknown.svg";
       break;
   }
+
+  let background = temperature.data.weather[0].main;
+  let bgVideo = document.getElementById("background-video");
+  let videoSource = document.getElementById("video-source");
+
+  switch (background) {
+    case "Clear":
+      videoSource.src = "videos/clear.mp4";
+      break;
+    case "Clouds":
+      videoSource.src = "videos/clouds.mp4";
+      break;
+    case "Rain":
+    case "Drizzle":
+      videoSource.src = "videos/rain.mp4";
+      break;
+    case "Thunderstorm":
+      videoSource.src = "videos/thunderstorm.mp4";
+      break;
+    case "Snow":
+      videoSource.src = "videos/snow.mp4";
+      break;
+    default:
+      videoSource.src = "videos/default.mp4";
+      break;
+  }
+
+  bgVideo.load();
   let precipitation = document.querySelector("span.precipitation");
   precipitation.innerHTML = temperature.data.rain
     ? temperature.data.rain["1h"]
@@ -292,6 +408,33 @@ function searchCity(event) {
         break;
     }
 
+    let background = temperature.data.weather[0].main;
+    let bgVideo = document.getElementById("background-video");
+    let videoSource = document.getElementById("video-source");
+
+    switch (background) {
+      case "Clear":
+        videoSource.src = "videos/clear.mp4";
+        break;
+      case "Clouds":
+        videoSource.src = "videos/clouds.mp4";
+        break;
+      case "Rain":
+      case "Drizzle":
+        videoSource.src = "videos/rain.mp4";
+        break;
+      case "Thunderstorm":
+        videoSource.src = "videos/thunderstorm.mp4";
+        break;
+      case "Snow":
+        videoSource.src = "videos/snow.mp4";
+        break;
+      default:
+        videoSource.src = "videos/default.mp4";
+        break;
+    }
+
+    bgVideo.load();
     let precipitation = document.querySelector("span.precipitation");
     precipitation.innerHTML = temperature.data.rain
       ? temperature.data.rain["1h"]

@@ -12,7 +12,6 @@
       crossorigin="anonymous"
     />
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    
 
     <link rel="stylesheet" href="src/style.css" class="css" />
   </head>
@@ -74,10 +73,13 @@
               <a href="#" class="°F"> °F </a>
             </span>
           </div>
-          
+
           <div class="col-4">
-            
-        <img id="weather-icon" src="" alt="" />
+            <img id="weather-icon" src="" alt="" />
+
+            <video id="background-video" autoplay loop muted>
+              <source id="video-source" type="video/mp4" />
+            </video>
 
             <br />
             <span class="condition"> Clear with periodic clouds</span>
@@ -86,58 +88,79 @@
             <div class="card-body">
               <div class="row">
                 <div class="col-2">
-                  Mon
+                  <span class="forecast" id="forecast-day1"></span>
                   <br />
-                  03/04
+                  <span class="forecast" id="forecast-date1"></span>
+
                   <br />
-                  <img src="images/cloudy.png" alt="cloud" width="50" />
+                  <img
+                    src="images/cloudy.png"
+                    alt="cloud"
+                    width="50"
+                    id="forecast-icon1"
+                  />
                   <br />
-                  37°C
+                  <span class="forecast" id="forecast-temp1"></span>
                 </div>
                 <div class="col-2">
-                  Tue
+                  <span class="forecast" id="forecast-day2"></span>
                   <br />
-                  04/04
+                  <span class="forecast" id="forecast-date2"></span>
+
                   <br />
-                  <img src="images/cloudy.png" alt="cloud" width="50" />
+                  <img
+                    src="images/cloudy.png"
+                    alt="cloud"
+                    width="50"
+                    id="forecast-icon2"
+                  />
                   <br />
-                  38°C
+                  <span class="forecast" id="forecast-temp2"></span>
                 </div>
                 <div class="col-2">
-                  Wed
+                  <span class="forecast" id="forecast-day3"></span>
                   <br />
-                  05/04
+                  <span class="forecast" id="forecast-date3"></span>
+
                   <br />
-                  <img src="images/sun.png" alt="cloud" width="50" />
+                  <img
+                    src="images/cloudy.png"
+                    alt="cloud"
+                    width="50"
+                    id="forecast-icon3"
+                  />
                   <br />
-                  37°C
+                  <span class="forecast" id="forecast-temp3"></span>
                 </div>
                 <div class="col-2">
-                  Thurs
+                  <span class="forecast" id="forecast-day4"></span>
                   <br />
-                  06/04
+                  <span class="forecast" id="forecast-date4"></span>
+
                   <br />
-                  <img src="images/cloudy.png" alt="cloud" width="50" />
+                  <img
+                    src="images/cloudy.png"
+                    alt="cloud"
+                    width="50"
+                    id="forecast-icon4"
+                  />
                   <br />
-                  37°C
+                  <span class="forecast" id="forecast-temp4"></span>
                 </div>
                 <div class="col-2">
-                  Fri
+                  <span class="forecast" id="forecast-day5"></span>
                   <br />
-                  07/04
+                  <span class="forecast" id="forecast-date5"></span>
+
                   <br />
-                  <img src="images/cloud.png" alt="cloud" width="50" />
+                  <img
+                    src="images/cloudy.png"
+                    alt="cloud"
+                    width="50"
+                    id="forecast-icon5"
+                  />
                   <br />
-                  37°C
-                </div>
-                <div class="col-2">
-                  Sat
-                  <br />
-                  03/04
-                  <br />
-                  <img src="images/cloud.png" alt="cloud" width="50" />
-                  <br />
-                  37°C
+                  <span class="forecast" id="forecast-temp5"></span>
                 </div>
               </div>
             </div>

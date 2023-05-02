@@ -3,7 +3,12 @@ function notLoadPosition(notLoad) {
   let lon = notLoad.coords.longitude;
   let apiKey = "35b0e07e80de2469db49b28cc9fee2cd";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+
+  let forecastKey = "070e254694aef1c0135f35c0fc082206";
+  let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${forecastKey}&units=metric`;
+
   axios.get(apiUrl).then(currentTemperature);
+  axios.get(forecastUrl).then(forecastTemperature);
 }
 
 function currentTemperature(temperature) {
@@ -145,62 +150,57 @@ function currentTemperature(temperature) {
   humidity.innerHTML = temperature.data.main.humidity;
   let h1 = document.querySelector("h1");
   h1.innerHTML = temperature.data.name;
-
-  //forecast 5 days
-  let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
-  axios.get(forecastUrl).then(forecastTemperature);
-  function forecastTemperature(forecast) {
-    // Get the forecast data for the next 5 days
-    let forecastData = forecast.data.list.slice(0, 5);
-
-    // Loop through the forecast data and update the HTML on the page
-    for (let i = 0; i < forecastData.length; i++) {
-      let forecastDayElement = document.getElementById(`forecast-day${i + 1}`);
-      let forecastTempElement = document.getElementById(
-        `forecast-temp${i + 1}`
-      );
-      let forecastIconElement = document.getElementById(
-        `forecast-icon${i + 1}`
-      );
-
-      // Get the forecast date, temperature, and weather condition
-      let forecastDate = new Date(forecastData[i].dt * 1000);
-      let forecastTemp = Math.round(forecastData[i].main.temp);
-      let forecastCondition = forecastData[i].weather[0].main;
-
-      // Update the HTML on the page with the forecast data
-      forecastDayElement.innerHTML = forecastDate.toLocaleDateString("en-US", {
-        weekday: "short",
-      });
-      forecastTempElement.innerHTML = `${forecastTemp}&deg;C`;
-      forecastIconElement.src = getIconUrl(forecastCondition);
-    }
-  }
-
-  function getIconUrl(condition) {
-    // Return the URL of the appropriate icon based on the weather condition
-    switch (condition) {
-      case "Clear":
-        return "images/clear.svg";
-      case "Clouds":
-        return "images/clouds.svg";
-      case "Rain":
-      case "Drizzle":
-        return "images/rain.svg";
-      case "Thunderstorm":
-        return "images/thunderstorm.svg";
-      case "Snow":
-        return "images/snow.svg";
-      default:
-        return "images/unknown.svg";
-    }
-  }
-
 }
 
+//forecast 5 days
 
-   
+function forecastTemperature(forecast) {
+  console.log(forecast);
 
+  // Get the forecast data for the next 5 days
+  let forecastData = forecast.data.list;
+
+  //forecast 8
+  let forecastDayElement1 = document.getElementById("forecast-day1");
+  let forecastDateElement1 = document.getElementById("forecast-date1");
+
+  let forecastTempElement1 = document.getElementById("forecast-temp1");
+  let forecastIconElement1 = document.getElementById("forecast-icon1");
+
+  let forecastDate1 = new Date(forecastData[8].dt_txt);
+  let forecastDay1 = forecastDate1.toLocaleDateString("en-US", {
+    weekday: "short",
+  });
+  let forecastDateString1 = forecastDate1.toLocaleDateString("en-US", {
+    month: "numeric",
+    day: "numeric",
+  });
+  let forecastTemp1 = Math.round(forecastData[8].main.temp);
+  let forecastCondition1 = forecastData[8].weather[0].main;
+  forecastDayElement1.innerHTML = forecastDay1;
+  forecastDateElement1.innerHTML = forecastDateString1;
+  forecastTempElement1.innerHTML = `${forecastTemp1}&deg;C`;
+
+  forecastIconElement1.src = getIconUrl(forecastCondition1);
+}
+
+function getIconUrl(condition1) {
+  switch (condition1) {
+    case "Clear":
+      return "images/clear.svg";
+    case "Clouds":
+      return "images/clouds.svg";
+    case "Rain":
+    case "Drizzle":
+      return "images/rain.svg";
+    case "Thunderstorm":
+      return "images/thunderstorm.svg";
+    case "Snow":
+      return "images/snow.svg";
+    default:
+      return "images/unknown.svg";
+  }
+}
 navigator.geolocation.getCurrentPosition(notLoadPosition);
 
 //current button

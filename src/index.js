@@ -217,7 +217,11 @@ function position(response) {
   let lon = response.coords.longitude;
   let apiKey = "35b0e07e80de2469db49b28cc9fee2cd";
   let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}&units=metric`;
+  let forecastKey = "070e254694aef1c0135f35c0fc082206";
+  let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${forecastKey}&units=metric`;
+
   axios.get(apiUrl).then(currentTemperature);
+  axios.get(forecastUrl).then(forecastTemperatureCurrent);
 }
 
 function currentTemperature(temperature) {
@@ -355,6 +359,64 @@ function currentTemperature(temperature) {
   let h1 = document.querySelector("h1");
   h1.innerHTML = temperature.data.name;
 }
+
+//forecast 5 days
+
+function forecastTemperatureCurrent(forecast) {
+  // Get the forecast data for the specific hours
+  console.log(forecast);
+  let forecastData = [
+    forecast.data.list[8],
+    forecast.data.list[16],
+    forecast.data.list[24],
+    forecast.data.list[32],
+    forecast.data.list[39],
+  ];
+
+  // Loop through the forecast data and update the HTML on the page
+  for (let i = 0; i < forecastData.length; i++) {
+    let forecastDayElement = document.getElementById(`forecast-day${i + 1}`);
+    let forecastDateElement = document.getElementById(`forecast-date${i + 1}`);
+    let forecastTempElement = document.getElementById(`forecast-temp${i + 1}`);
+    let forecastIconElement = document.getElementById(`forecast-icon${i + 1}`);
+
+    // Get the forecast date, temperature, and weather condition
+    let forecastDate = new Date(forecastData[i].dt_txt);
+    let forecastDay = forecastDate.toLocaleDateString("en-US", {
+      weekday: "short",
+    });
+    let forecastDateString = forecastDate.toLocaleDateString("en-US", {
+      month: "numeric",
+      day: "numeric",
+    });
+    let forecastTemp = Math.round(forecastData[i].main.temp);
+    let forecastCondition = forecastData[i].weather[0].main;
+
+    // Update the HTML on the page with the forecast data
+    forecastDayElement.innerHTML = forecastDay;
+    forecastDateElement.innerHTML = forecastDateString;
+    forecastTempElement.innerHTML = `${forecastTemp}&deg;C`;
+    forecastIconElement.src = getIconUrl(forecastCondition);
+  }
+}
+
+function getIconUrl(condition) {
+  switch (condition) {
+    case "Clear":
+      return "images/clear.svg";
+    case "Clouds":
+      return "images/clouds.svg";
+    case "Rain":
+    case "Drizzle":
+      return "images/rain.svg";
+    case "Thunderstorm":
+      return "images/thunderstorm.svg";
+    case "Snow":
+      return "images/snow.svg";
+    default:
+      return "images/unknown.svg";
+  }
+}
 function currentPosition() {
   navigator.geolocation.getCurrentPosition(position);
 }
@@ -376,7 +438,75 @@ function searchCity(event) {
   h1.innerHTML = cityReturn;
   let key = "1361f00332c90f7a8c486d88dcd1f268";
   let url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`;
+  let forecastKey = "070e254694aef1c0135f35c0fc082206";
+  let forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${forecastKey}&units=metric`;
+  axios.get(forecastUrl).then(forecastTemperatureSearch);
+
   axios.get(url).then(showTemperature);
+
+  //forecast 5 days
+
+  function forecastTemperatureSearch(forecast) {
+    // Get the forecast data for the specific hours
+    console.log(forecast);
+    let forecastData = [
+      forecast.data.list[8],
+      forecast.data.list[16],
+      forecast.data.list[24],
+      forecast.data.list[32],
+      forecast.data.list[39],
+    ];
+
+    // Loop through the forecast data and update the HTML on the page
+    for (let i = 0; i < forecastData.length; i++) {
+      let forecastDayElement = document.getElementById(`forecast-day${i + 1}`);
+      let forecastDateElement = document.getElementById(
+        `forecast-date${i + 1}`
+      );
+      let forecastTempElement = document.getElementById(
+        `forecast-temp${i + 1}`
+      );
+      let forecastIconElement = document.getElementById(
+        `forecast-icon${i + 1}`
+      );
+
+      // Get the forecast date, temperature, and weather condition
+      let forecastDate = new Date(forecastData[i].dt_txt);
+      let forecastDay = forecastDate.toLocaleDateString("en-US", {
+        weekday: "short",
+      });
+      let forecastDateString = forecastDate.toLocaleDateString("en-US", {
+        month: "numeric",
+        day: "numeric",
+      });
+      let forecastTemp = Math.round(forecastData[i].main.temp);
+      let forecastCondition = forecastData[i].weather[0].main;
+
+      // Update the HTML on the page with the forecast data
+      forecastDayElement.innerHTML = forecastDay;
+      forecastDateElement.innerHTML = forecastDateString;
+      forecastTempElement.innerHTML = `${forecastTemp}&deg;C`;
+      forecastIconElement.src = getIconUrl(forecastCondition);
+    }
+  }
+
+  function getIconUrl(condition) {
+    switch (condition) {
+      case "Clear":
+        return "images/clear.svg";
+      case "Clouds":
+        return "images/clouds.svg";
+      case "Rain":
+      case "Drizzle":
+        return "images/rain.svg";
+      case "Thunderstorm":
+        return "images/thunderstorm.svg";
+      case "Snow":
+        return "images/snow.svg";
+      default:
+        return "images/unknown.svg";
+    }
+  }
 
   function showTemperature(temperature) {
     let number = document.querySelector("span.number");

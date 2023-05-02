@@ -155,37 +155,45 @@ function currentTemperature(temperature) {
 //forecast 5 days
 
 function forecastTemperature(forecast) {
+  // Get the forecast data for the specific hours
   console.log(forecast);
+  let forecastData = [
+    forecast.data.list[8],
+    forecast.data.list[16],
+    forecast.data.list[24],
+    forecast.data.list[32],
+    forecast.data.list[39],
+  ];
 
-  // Get the forecast data for the next 5 days
-  let forecastData = forecast.data.list;
+  // Loop through the forecast data and update the HTML on the page
+  for (let i = 0; i < forecastData.length; i++) {
+    let forecastDayElement = document.getElementById(`forecast-day${i + 1}`);
+    let forecastDateElement = document.getElementById(`forecast-date${i + 1}`);
+    let forecastTempElement = document.getElementById(`forecast-temp${i + 1}`);
+    let forecastIconElement = document.getElementById(`forecast-icon${i + 1}`);
 
-  //forecast 8
-  let forecastDayElement1 = document.getElementById("forecast-day1");
-  let forecastDateElement1 = document.getElementById("forecast-date1");
+    // Get the forecast date, temperature, and weather condition
+    let forecastDate = new Date(forecastData[i].dt_txt);
+    let forecastDay = forecastDate.toLocaleDateString("en-US", {
+      weekday: "short",
+    });
+    let forecastDateString = forecastDate.toLocaleDateString("en-US", {
+      month: "numeric",
+      day: "numeric",
+    });
+    let forecastTemp = Math.round(forecastData[i].main.temp);
+    let forecastCondition = forecastData[i].weather[0].main;
 
-  let forecastTempElement1 = document.getElementById("forecast-temp1");
-  let forecastIconElement1 = document.getElementById("forecast-icon1");
-
-  let forecastDate1 = new Date(forecastData[8].dt_txt);
-  let forecastDay1 = forecastDate1.toLocaleDateString("en-US", {
-    weekday: "short",
-  });
-  let forecastDateString1 = forecastDate1.toLocaleDateString("en-US", {
-    month: "numeric",
-    day: "numeric",
-  });
-  let forecastTemp1 = Math.round(forecastData[8].main.temp);
-  let forecastCondition1 = forecastData[8].weather[0].main;
-  forecastDayElement1.innerHTML = forecastDay1;
-  forecastDateElement1.innerHTML = forecastDateString1;
-  forecastTempElement1.innerHTML = `${forecastTemp1}&deg;C`;
-
-  forecastIconElement1.src = getIconUrl(forecastCondition1);
+    // Update the HTML on the page with the forecast data
+    forecastDayElement.innerHTML = forecastDay;
+    forecastDateElement.innerHTML = forecastDateString;
+    forecastTempElement.innerHTML = `${forecastTemp}&deg;C`;
+    forecastIconElement.src = getIconUrl(forecastCondition);
+  }
 }
 
-function getIconUrl(condition1) {
-  switch (condition1) {
+function getIconUrl(condition) {
+  switch (condition) {
     case "Clear":
       return "images/clear.svg";
     case "Clouds":

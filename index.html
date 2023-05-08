@@ -26,7 +26,7 @@
                 placeholder="Type a city.."
                 autocomplete="off"
                 autofocus="on"
-                class="form-control shadow-sm border-0"
+                class="form-control shadow-xl border-0"
                 id="city-search"
               />
             </div>
@@ -35,14 +35,14 @@
               <input
                 type="submit"
                 value="Search"
-                class="form-control btn btn-secondary shadow-sm"
+                class="form-control btn btn-info shadow-sm"
               />
             </div>
             <div class="col-2">
               <input
                 type="submit"
                 value="Current"
-                class="form-control btn btn-success shadow-sm"
+                class="form-control btn btn-secondary shadow-sm"
                 id="current"
               />
             </div>
@@ -63,10 +63,10 @@
             
           </div>
           <div class="col-4">
-            <span class="number"> 31</span>
+            <span class="number" id="temperature"> 31</span>
             <span class="degree">
-              <a href="#" class="celsius">°C/</a>
-              <a href="#" class="°F"> °F </a>
+              <a href="#" id="celsius-link" class="celsius">°C/</a>
+              <a href="#" id="fahrenheit-link" class="°F"> °F </a>
             </span>
           </div>
 

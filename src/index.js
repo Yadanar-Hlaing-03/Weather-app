@@ -72,8 +72,8 @@ function currentTemperature(temperature) {
       "😴Good night sweet dreams😴! Sw sw x nor ayan nout kya tk ahti m nay nk👊!!!";
   }
   let number = document.querySelector("span.number");
-  let currentTemp = Math.round(temperature.data.main.temp);
-  number.innerHTML = currentTemp;
+  celsiusTemperature = temperature.data.main.temp;
+  number.innerHTML = Math.round(celsiusTemperature);
   console.log(temperature);
   let situation = document.querySelector("span.condition");
   situation.innerHTML = temperature.data.weather[0].description;
@@ -285,8 +285,8 @@ function currentTemperature(temperature) {
       "😴Good night sweet dreams😴! Sw sw x nor ayan nout kya tk ahti m nay nk👊!!!";
   }
   let number = document.querySelector("span.number");
-  let currentTemp = Math.round(temperature.data.main.temp);
-  number.innerHTML = currentTemp;
+  celsiusTemperature = temperature.data.main.temp;
+  number.innerHTML = Math.round(celsiusTemperature);
   console.log(temperature);
   let situation = document.querySelector("span.condition");
   situation.innerHTML = temperature.data.weather[0].description;
@@ -510,8 +510,8 @@ function searchCity(event) {
 
   function showTemperature(temperature) {
     let number = document.querySelector("span.number");
-    let currentTemp = Math.round(temperature.data.main.temp);
-    number.innerHTML = currentTemp;
+    celsiusTemperature = temperature.data.main.temp;
+    number.innerHTML = Math.round(celsiusTemperature);
     console.log(temperature);
     let situation = document.querySelector("span.condition");
     let description = temperature.data.weather[0].description;
@@ -658,21 +658,26 @@ function searchCity(event) {
   }
 }
 
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("span.number");
+  let fahrenheitTemperature = (celsiusTemperature * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fahrenheitTemperature);
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("span.number");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
 let search = document.querySelector("form.search-form");
 search.addEventListener("submit", searchCity);
 
-function degreeCelsius(event) {
-  event.preventDefault();
-  let number = document.querySelector("span.number");
-  number.innerHTML = 31;
-}
-let degree = document.querySelector("a.celsius");
-degree.addEventListener("click", degreeCelsius);
+let celsiusTemperature = null;
 
-function degreeFahrenheit(event) {
-  event.preventDefault();
-  let number = document.querySelector("span.number");
-  number.innerHTML = 66;
-}
-let Fahrenheit = document.querySelector("a.°F");
-Fahrenheit.addEventListener("click", degreeFahrenheit);
+let fahrenheitLink = document.querySelector("a.°F");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("a.celsius");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);

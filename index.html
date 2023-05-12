@@ -18,6 +18,10 @@
   <body>
     <div class="container">
       <div class="weather-app">
+        <video id="background-video" autoplay loop muted>
+          <source id="video-source" type="video/mp4" />
+        </video>
+
         <form class="search-form">
           <div class="row">
             <div class="col-8">
@@ -71,10 +75,6 @@
 
           <div class="col-4">
             <img id="weather-icon" src="" alt="" />
-
-            <video id="background-video" autoplay loop muted>
-              <source id="video-source" type="video/mp4" />
-            </video>
 
             <br />
             <span class="condition"> Clear with periodic clouds</span>

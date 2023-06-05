@@ -32,53 +32,55 @@ h4 {
 }
 
 .info {
-  color: #002045;
+  color: #b93eb9;
   font-size: 13px;
   list-style: none;
   text-align: left;
   padding-top: 15px;
   line-height: 23px;
+  font-family: cursive;
 }
 ul {
   padding: 15px 10px;
 }
 
 .number {
-  color: #002045;
-  font-size: 70px;
-  font-family: Arial, Helvetica, sans-serif;
+  color: #7c00f7;
+  font-size: 80px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 .degree {
   vertical-align: top;
   font-weight: bold;
   line-height: 2;
   font-size: 20px;
-
-  
 }
 .celsius {
   text-decoration: none;
-   cursor: default;
+  cursor: default;
 }
 
 .condition {
-  color: #002045;
+  color: #b93eb9;
   font-size: 13px;
+  font-family: cursive;
 }
 .card-body {
-  color: #01204f;
+  color: #b93eb9;
+  font-family: cursive;
   font-size: 13px;
   text-align: center;
   display: block;
   margin: 0;
 }
 .card {
-  background: #f5edbe;
+  background: #f7c9d4;
 }
 
-.col-2{
-display: block;
-margin: auto;}
+.col-2 {
+  display: block;
+  margin: auto;
+}
 .col-4 {
   display: block;
   margin: 0;
@@ -86,21 +88,28 @@ margin: auto;}
 }
 .°F {
   text-decoration: none;
-   cursor: default;
+  cursor: default;
 }
 .°F:hover {
-  color: red;
+  color:purple;
 }
- 
+.celsius:hover{
+  color: #b93eb9;
+}
+
 .weather-app {
   border: 1px solid black;
   padding: 30px;
   border-radius: 10px;
   max-width: 700px;
   margin: 20px auto;
-  
+  background-color: rgba(245, 243, 200, 0.7);
 }
-
+.detailsIcons {
+  width: 30px;
+  height: 30px;
+  padding-right: 10px;
+}
 #background-video {
   position: fixed;
   top: 0;
@@ -110,7 +119,6 @@ margin: auto;}
   object-fit: cover;
   z-index: -1;
 }
-
 
 .search-form {
   margin-bottom: 20px;
